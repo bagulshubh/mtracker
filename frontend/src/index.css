@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+    
+    .signup-wrapper{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background-color: black;
+        z-index: 1;
+    }
+    .signup-back-image{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: -1;
+        opacity: 0.5;
+        background-color: transparent;
+    }
+    .signup-form-wrapper{
+        width: 100%;
+        position: absolute;
+        z-index: 2;
+        color:white;
+    }
+    .signup-form{
+        width: 90%;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+        color: white;
+    }
+    .main-heading{
+        font-size: 2rem;
+    }
+    .heading-text{
+        font-size: 1rem;
+    }
+    .std-input{
+        width: 100%;
+        padding: 1vh 5vw;
+        font-size: 1.3rem;
+        color: white;
+        background-color: transparent;
+        border: 1px solid rgb(205, 193, 193);
+        border-radius: 10px;
+        z-index: 100;
+    }
+    .password input{
+        all: unset;
+    }
+    .password{
+        display: flex;
+        padding: 1vh 5vw;
+        font-size: 1.3rem;
+        color: white;
+        background-color: transparent;
+        border: 1px solid rgb(205, 193, 193);
+        border-radius: 10px;
+        z-index: 100;
+    }
+    .std-input::placeholder{
+        color: white;
+        opacity: 0.7;
+    }
+    .faeye{
+        cursor: pointer;
+    }
+}
+

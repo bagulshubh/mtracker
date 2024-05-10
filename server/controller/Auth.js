@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 exports.signup = async(req,res)=>{
     try{
 
-        const {name, email ,password} = req.body;
+        const {name, email ,password , confirmPassword} = req.body;
         console.log("TIl here")
         const user = await User.findOne({email});
         console.log(user);
@@ -15,6 +15,14 @@ exports.signup = async(req,res)=>{
             return res.status(409).json({message:"User already exists"})
         }
         console.log("not ehre")
+
+        if(password !== confirmPassword){
+            return res.status(409).json({
+                success:false,
+                message:"Password does not match"
+            })
+        }
+
         const hashedPassword = await bcrypt.hash(password,10);
         console.log("got here")
          
@@ -125,6 +133,35 @@ exports.getUser = async(req,res) =>{
         })
 
     } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+
+}
+
+exports.logout = async(req,res)=>{
+
+    try{
+
+        const userId = req.userId;
+
+        const user = await User.findById(userId);
+
+        if(!user){
+            return res.status(402).json({
+                success:false,
+                message:'User not found'
+            })
+        }
+
+        return res.status(200).json({
+            statsu:True,
+            message:"Logout is not yet implemented"
+        })
+
+    }catch(err){
         return res.status(500).json({
             success:false,
             message:err.message
