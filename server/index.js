@@ -24,7 +24,7 @@ app.use("/auth",authRouter);
 app.use("/account",accountRouter);
 
 app.get("/",()=>{
-    return <h1>Working..</h1>
+    return `<h1>Working..</h1>`
 })
 
 app.listen(PORT,()=>{
