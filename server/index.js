@@ -24,10 +24,7 @@ app.use("/auth",authRouter);
 app.use("/account",accountRouter);
 
 app.get("/",()=>{
-    return res.json({
-		success:true,
-		message:'Your server is up and running....'
-	});
+    return <h1>Working..</h1>
 })
 
 app.listen(PORT,()=>{
