@@ -5,9 +5,13 @@ import { IoMdContacts } from "react-icons/io";
 
 const Hero = (props) => {
     const user = props.user;
-    console.log("User in hero section: ",user);
+    //console.log("User in hero section: ",user);
 
     const navigate = useNavigate();
+
+    const routeHandler = (id)=>{
+        navigate(`/account/${id}`);
+    }
 
     return (
         <div className='hero-wrapper'>
@@ -18,12 +22,12 @@ const Hero = (props) => {
 
             
                 {
-                    user.accounts.length === 0 ? <div>Created Contacts will be visible here.</div> : <div className='homepage-card-con'>
+                    user.accounts.length === 0 ? <h3>Created Contacts will be visible here.</h3> : <div className='homepage-card-con'>
 
                     {
                         user.accounts.map((account,key)=>{
                             return (
-                                <div className='homepage-card'>
+                                <div className='homepage-card' onClick={()=>{ routeHandler(account._id)}}>
                                     <div className='card-name'>{account.name}</div>
                                     <div className='card-amount'>{account.totalAmount}</div>
                                 </div>
