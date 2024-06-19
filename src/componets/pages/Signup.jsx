@@ -57,7 +57,7 @@ const Signup = () => {
 
               <p className='heading-text'>Singup to get started with your first record</p>
 
-              <div className='input-div'>
+              <div className='std-input-div'>
                 <input type='text'  className = "std-input" placeholder='Enter Name' name='name' value={data.name} onChange={handleChange} ></input>
               </div>
 

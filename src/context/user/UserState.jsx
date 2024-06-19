@@ -6,6 +6,7 @@ import { getUser } from "../../services/User/AuthServices";
 const UserState = (props) => {
   const [loading,setLoading] = useState(true);
   const [user, setUser] = useState("");
+
   
   const token =  localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
   let tempUser = "";
@@ -24,7 +25,7 @@ const UserState = (props) => {
 
 
   return (
-    <UserContext.Provider value={{ user , setUser , loading}}>
+    <UserContext.Provider value={{ user , setUser , loading , token}}>
       {props.children}
     </UserContext.Provider>
   );

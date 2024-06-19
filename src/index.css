@@ -13,6 +13,7 @@
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    user-select: none;
 }
 .wrapper{
     width: 100vw;
@@ -20,6 +21,9 @@
     overflow-x: hidden;
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media only screen and (max-width: 767px) {
@@ -152,7 +156,106 @@
         font-size: 4vw;
         border: 1px solid white;
         border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
+    /* # region hero section*/
+    .hero-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 2vh;
+    }
+    .homepage-heading2{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1vw;
+    }
+    .contacts-icon{
+        color: var(--primary-color);
+    }
+    .homepage-card-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap:1vh;
+    }
+    .homepage-card{
+        width: 100%;
+        padding: 2vh 4vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: rgba(237, 234, 234, 0.02) 0px 1px 3px 0px, rgba(229, 237, 245, 0.15) 0px 0px 0px 1px;
+        border-radius: 5px;
+    }
+
+    /* #region create page */
+    .create-wrapper-1{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+        justify-content: center;
+    }
+    .create-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+        justify-content: center;
+        padding: 1vh 2vw;
+    }
+    .create-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+    }
+    .create-input-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1vh;
+        align-items: flex-start;
+    }
+    .create-input-con input{
+        all: unset;
+        background-color: rgb(239, 241, 241);
+        color: black;
+        width: 80%;
+        font-size: 20px;
+        padding: 1vh 2vw;
+        border: none;
+        border-radius: 5px;
+    }
+    .block{
+        display: none;
+    }
+    .blur{
+        filter: blur(5px);
+    }
+
+    /* HTML: <div class="loader"></div> */
+    .loader {
+        width: 50px;
+        aspect-ratio: 1;
+        --_c:no-repeat linear-gradient(orange 0 0) 50%; 
+        background: 
+        var(--_c)/100% 50%,
+        var(--_c)/50% 100%;
+        border-radius: 50%;
+        animation: l29 2s infinite linear;
+        align-self: center;
+        justify-self: center;
+    }
+    @keyframes l29 {
+        100% {transform: rotate(1turn)}
+    }
+    
 }
 

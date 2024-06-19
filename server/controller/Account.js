@@ -41,11 +41,12 @@ exports.createAccount = async(req,res)=>{
 
         user.accounts.push(account);
         await user.save();
+        await user.populate("accounts");
 
         return res.status(201).json({
             success:true,
             message:"Account Created Successfully",
-            account
+            user
         })
 
     } catch(err){

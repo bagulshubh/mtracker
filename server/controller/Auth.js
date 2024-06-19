@@ -125,7 +125,7 @@ exports.getUser = async(req,res) =>{
 
         const userId = req.userId;
 
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).populate("accounts");
 
         return res.status(200).json({
             success:true,

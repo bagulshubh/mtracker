@@ -2,19 +2,21 @@ import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../Navbar'
 import UserContext  from "../../context/user/UserContext"
 import { useNavigate } from 'react-router-dom';
-
+import Hero from '../Hero';
 
 const Homepage = () => {
 
   const context = useContext(UserContext);
   const [user,setUser] = useState(context.user);
   const [loading,setLoading] = useState(context.loading);
+  const token = context.token;
 
   const navigate = useNavigate();
 
   useEffect(()=>{
     setLoading(context.loading);
     setUser(context.user);
+    console.log(context.user);
   },[context.loading , context.user])
 
   return (
@@ -32,7 +34,9 @@ const Homepage = () => {
           </div>
         </div> : 
 
-        <div className='homepage-con'>You are logged in</div>
+        <div className='homepage-con'>
+          <Hero user = {user} token = {token}></Hero>
+        </div>
       }
 
       
