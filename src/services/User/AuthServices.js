@@ -1,9 +1,9 @@
-const BASE_URL =  "https://mtracker-0sct.onrender.com" //"http://localhost:4000/"  
+const BASE_URL =  "https://mtracker-0sct.onrender.com" //"http://localhost:4000"  
 
 export const signUp = async (data)=>{
     try{
         console.log("In signup funtion")
-        const res = await fetch (`${BASE_URL}auth/signup`,
+        const res = await fetch (`${BASE_URL}/auth/signup`,
             {
                 method:'POST',
                 headers: {
@@ -23,7 +23,7 @@ export const signUp = async (data)=>{
 
 export const login  = async(data) =>{
     try{
-        const res = await fetch (`${BASE_URL}auth/login`,
+        const res = await fetch (`${BASE_URL}/auth/login`,
             {
                 method:'POST',
                 headers: {
@@ -44,7 +44,7 @@ export const login  = async(data) =>{
 export const getUser = async(token)=>{
     try{
 
-        const res = await fetch (`${BASE_URL}auth/`,
+        const res = await fetch (`${BASE_URL}/auth/`,
             {
                 method:'GET',
                 headers: {

@@ -1,10 +1,10 @@
-const BASE_URL =  "https://mtracker-0sct.onrender.com" //"http://localhost:4000/"  
+const BASE_URL =  "https://mtracker-0sct.onrender.com" //"http://localhost:4000"  
 
 export const createAccount = async(data,token,setUser)=>{
     try{
         console.log(token)
 
-        const res = await fetch (`${BASE_URL}account/create`,
+        const res = await fetch (`${BASE_URL}/account/create`,
             {
                 method:'POST',
                 headers: {
