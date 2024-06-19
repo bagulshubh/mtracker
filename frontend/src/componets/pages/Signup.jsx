@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import back from "../../assets/signupbackground.avif"
 import { signUp } from '../../services/User/AuthServices'
 import { FaEye } from "react-icons/fa";
@@ -37,6 +37,12 @@ const Signup = () => {
       setError(output.message)
     }
   }
+
+  useEffect(()=>{
+    setTimeout(() => {
+      setError("")
+    }, 7000);
+  },[error])
 
   return (
     <div className='signup-wrapper'>

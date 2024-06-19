@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import back from "../../assets/signupbackground.avif"
 import { FaEye } from "react-icons/fa";
-
+import { login } from '../../services/User/AuthServices';
+import { useNavigate } from 'react-router-dom';
+import UserContext  from "../../context/user/UserContext"
 
 const Login = () => {
 
     const [seep , setSeep] = useState(false);
+    const context = useContext(UserContext)
+    const setUser = context.setUser;
+    const navigate = useNavigate()
     const [data , setData] = useState({
         email : "",
         password : ""
@@ -19,9 +24,24 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = ()=>{
-        console.log(data)
+    const handleSubmit = async()=>{
+        const output = await login(data);
+        if(output.success === true){
+          console.log("This is token generated form server",output.token);
+          localStorage.setItem("token" , JSON.stringify(output.token));
+          setUser(output.user)
+          navigate("/")
+        }
+        else{
+          setError(output.message)
+        }
     }
+
+    useEffect(()=>{
+      setTimeout(() => {
+        setError("")
+      }, 7000);
+    }),[error]
 
   return (
     <div className='signup-wrapper'>

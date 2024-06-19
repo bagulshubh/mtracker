@@ -5,7 +5,7 @@ exports.auth = async (req,res,next)=>{
 
     try{
         console.log("Flow til here")
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.headers.token;
         console.log(token)
 
         if(!token){

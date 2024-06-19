@@ -1,4 +1,4 @@
-import {Routes,Route} from  'react-router-dom';
+import {Routes,Route, useNavigate} from  'react-router-dom';
 import { useContext } from 'react';
 import UserContext from './context/user/UserContext';
 import Homepage from './componets/pages/Homepage';
@@ -9,10 +9,11 @@ function App() {
 
   const context = useContext(UserContext);
   const user  = context.user;
-
+  const navigate = useNavigate();
   return (
 
     <div className='wrapper'>
+
 
       <Routes>
 
