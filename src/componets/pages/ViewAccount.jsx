@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAccount } from '../../services/Account/AccountServices';
+import { getAccount , deleteAccount } from '../../services/Account/AccountServices';
 import UserContext from '../../context/user/UserContext';
 import Navbar from '../Navbar';
 
@@ -10,6 +10,7 @@ const ViewAccount = () => {
     const id = params.id;
     const [account , setAccount ] = useState("");
     const token =  context.token;
+    const setUser = context.setUser;
     const [loading , setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -33,6 +34,15 @@ const ViewAccount = () => {
 
     },[id]);
 
+    const deleteHandler = async ()=>{
+        setLoading(true); 
+        const user = await deleteAccount(id,token);
+        console.log(user);
+        setUser(user);
+        setLoading(false);
+        navigate("/");
+    }
+
     return (
     <div className='account-wrapper'>
         
@@ -46,6 +56,7 @@ const ViewAccount = () => {
                         <div className='account-main'>
                             <h3 className='totalAmount'>{account.totalAmount}</h3>
                             <div className='homepage-btn' onClick={()=>{navigate(`/createEntry/${id}`)}}>Create Entry</div>
+                            <div className='homepage-btn' onClick={deleteHandler}>Delete</div>
                         </div>
                         <div className='entry-card-con'>
                             {

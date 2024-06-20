@@ -117,6 +117,31 @@ exports.getAccountById = async(req,res) =>{
     }
 }
 
+exports.deleteAccount = async(req,res)=>{
+    try{
+
+        const userId = req.userId;
+        const id = req.params.id;
+       
+
+        const account = await Account.findByIdAndDelete(id);
+
+        const user = await User.findById(userId).populate("accounts");
+
+        return res.status(200).json({
+            success:true,
+            message:"Account deleted successfully",
+            body:user
+        })
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
+
 // #endregion
 
 // #region Entry

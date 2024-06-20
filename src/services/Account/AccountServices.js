@@ -1,4 +1,4 @@
-const BASE_URL =  "https://mtracker-0sct.onrender.com" // "http://localhost:4000"  
+const BASE_URL = /* "https://mtracker-0sct.onrender.com" */ "http://localhost:4000"  
 
 export const createAccount = async(data,token,setUser)=>{
     try{
@@ -70,6 +70,32 @@ export const createEntry = async(data,token)=>{
             console.log(output);
     }
     catch(err){
+        console.log(err);
+    }
+}
+
+export const deleteAccount = async(id,token) =>{
+    try{
+
+        const res = await fetch (`${BASE_URL}/account/${id}`,
+            {
+                method:'DELETE',
+                headers: {
+                'Content-type': 'application/json',
+                'token':token
+                },
+                mode:'cors',
+            }
+        )      
+        
+        const output = await res.json();
+        if(output.success === true){
+            return output.body;
+        }
+        else{
+            console.log(output);
+        }
+    } catch(err){
         console.log(err);
     }
 }
