@@ -2,6 +2,7 @@
 
 :root{
     --primary-color: rgb(232, 144, 82);
+    --secondary-color: rgba(237, 111, 21, 0.3);
     --background-color: black;
     --text-color: white;
 }
@@ -266,6 +267,56 @@
     @keyframes l29 {
         100% {transform: rotate(1turn)}
     }
-    
+
+    /* #region viewAccount */
+    .account-wrapper{
+        width: 100%;
+        padding: 1vh 2vw;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+    }
+    .account-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2vh;
+    }
+    .account-main{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .entry-card-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5vh;
+    }
+    .entry-card{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 0.5vh;
+        box-shadow: var(--secondary-color) 0px 0px 0px 3px;
+        padding: 0.5vh 2vw;
+        border-radius: 1px;
+    }
+    .entry-card-main{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 5vw;
+    }
+    .red{
+        color: rgb(245, 0, 0);
+    }
+    .green{
+        color: rgb(10, 244, 10);
+    }
 }
 

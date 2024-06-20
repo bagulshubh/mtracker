@@ -42,14 +42,20 @@ const ViewAccount = () => {
             loading ? <div className='loader'></div> : <div>
                 {
                     account ? <div className='account-con'>
-                        <div className='homepage-btn' onClick={()=>{navigate(`/createEntry/${id}`)}}>Create Entry</div>
-                        <div>
+                        <h2>{account.name}</h2>
+                        <div className='account-main'>
+                            <h3 className='totalAmount'>{account.totalAmount}</h3>
+                            <div className='homepage-btn' onClick={()=>{navigate(`/createEntry/${id}`)}}>Create Entry</div>
+                        </div>
+                        <div className='entry-card-con'>
                             {
                                 account.entry.map((entry,key)=>{
-                                    return <div>
-                                        <div>{entry.amount}</div>
+                                    return <div className='entry-card'>
+                                        <div className='entry-card-main'>
+                                            <div className={entry.amount < 0 ? 'red' : 'green'}>{entry.amount}</div>
+                                            <div>{entry.createAt.substring(0,10)}</div>
+                                        </div>
                                         <div>{entry.details}</div>
-                                        <div>{entry.createdAt}</div>
                                     </div>
                                 })
                             }

@@ -10,6 +10,7 @@ exports.createAccount = async(req,res)=>{
         const userId = req.userId;
         const {name} = req.body;
         const {totalAmount} = req.body || 0;
+        const {details,note} = req.body;
 
         if(!name){
             return res.status(400).json({
@@ -36,8 +37,24 @@ exports.createAccount = async(req,res)=>{
         const account = await Account.create({
             userId,
             name,
-            totalAmount,            
+            totalAmount:0,            
         })
+
+        const accountId = account._id;
+
+        const entry = await Entry.create({
+            userId,
+            accountId,
+            amount:totalAmount,
+            details,
+            note
+        })
+
+        account.totalAmount = totalAmount;
+        account.entry.push(entry)
+        account.updateAt = Date.now();
+        await account.save();
+
 
         user.accounts.push(account);
         await user.save();

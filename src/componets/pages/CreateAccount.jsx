@@ -13,7 +13,9 @@ const CreateAccount = () => {
 
     const [data,setData] = useState({
         name:"",
-        totalAmount:""
+        totalAmount:"",
+        details:"",
+        note:"",
     })
     const token = context.token;
 
@@ -46,6 +48,8 @@ const CreateAccount = () => {
                 <div className='create-input-con'>
                     <input type='text' placeholder='Name' name='name' value={data.name} onChange={changeHandler}></input>
                     <input type='text' placeholder='Initial Amount' name='totalAmount' value={data.totalAmount} onChange={changeHandler}></input>
+                    <textarea  rows='3' placeholder='Details' name='details' value={data.details} onChange={changeHandler}></textarea>
+                    <textarea rows='3' placeholder='Note' name='note' value={data.note} onChange={changeHandler}></textarea>
                 </div>
                 <div onClick={submitHandler} className='homepage-btn'>Create</div>
                 
