@@ -21,7 +21,7 @@ const Homepage = () => {
 
   return (
     <div className='homepage-wrapper'>
-      <Navbar></Navbar>
+      <Navbar setUser = {setUser}></Navbar>
 
       {/* homepage will have two different divs one for login and signup and another for logged in users */}
 

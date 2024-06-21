@@ -22,7 +22,7 @@ const Hero = (props) => {
 
             
                 {
-                    user.accounts.length === 0 ? <h3>Created Contacts will be visible here.</h3> : <div className='homepage-card-con'>
+                    user.accounts.length === 0 ? <h3>No Contacts</h3> : <div className='homepage-card-con'>
 
                     {
                         user.accounts.map((account,key)=>{

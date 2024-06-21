@@ -11,21 +11,23 @@ const UserState = (props) => {
   const token =  localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
   let tempUser = "";
   useEffect(()=>{
-    async function  fetchData (token){
-      if(token!==""){
-        tempUser= await getUser(token);
-        setUser(tempUser);
-        console.log(tempUser);
-      }
-      setLoading(false);
-    }
     fetchData(token);
   },[token]);
 
 
+  async function  fetchData (token){
+    setLoading(true);
+    if(token!==""){
+      tempUser= await getUser(token);
+      setUser(tempUser);
+      console.log(tempUser);
+    }
+    setLoading(false);
+  }
+
 
   return (
-    <UserContext.Provider value={{ user , setUser , loading , token}}>
+    <UserContext.Provider value={{ user , setUser , loading , token , fetchData,setLoading}}>
       {props.children}
     </UserContext.Provider>
   );

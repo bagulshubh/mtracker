@@ -4,18 +4,40 @@ import { CiSearch } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = (props) => {
     const context = useContext(UserContext);
-    const [user , setUser ] = useState(context.user);
-    const token = localStorage.getItem("token");
+    const token = context.token;
+    const user = context.user;
+    const setUser = props.setUser;
+    const fetchData = context.fetchData;
+    const setLoading = context.setLoading;
     const navigate = useNavigate();
+
+    const [text,setText] = useState("");
+
+    const serachHandler =async ()=>{
+      //here we need to sort the accounts array inside the user and set it as a new user
+      setLoading(true);
+
+      const filterdAccounts = user.accounts.filter(account => account.name.toLowerCase().includes(text.toLowerCase()));
+
+      setUser((prev)=>{
+        return {
+          ...prev,
+          accounts:filterdAccounts
+        }
+      });
+      setLoading(false);
+      //console.log(text);
+    }
+
   return (
     <div className='nav-wrapper'>
-              <h1 className='logo' onClick={()=>{navigate("/")}}>MTracker</h1>
+        <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token)}}>MTracker</h1>
 
         <div className='input-div'>
-            <input type='text' placeholder='Search' ></input>
-            <CiSearch className='search-icon'></CiSearch>
+            <input type='text' placeholder='Search' value={text} name='text' onChange={(event)=>{setText(event.target.value)}} onKeyDown={(event)=>{if(event.key=="Enter"){serachHandler()}}} ></input>
+            <CiSearch className='search-icon' onClick={serachHandler}></CiSearch>
         </div>
 
     </div>
