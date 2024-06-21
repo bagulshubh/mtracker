@@ -318,5 +318,71 @@
     .green{
         color: rgb(10, 244, 10);
     }
+
+    /* #region entry */
+    .entry-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding : 1vh 2vw;
+        row-gap: 2vh;
+    }
+    .entry-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 2vh;
+    }
+    .entry-top{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border:  1px solid rgb(133, 132, 132);
+        padding: 1vh 1.5vw;
+        border-radius: 2px;
+    }
+    .amount{
+        font-size: 8vw;
+    }
+    .date-con{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1vh;
+    }
+    .entry-btn-con{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2vh;
+    }
+    .entry-con textarea{
+        display: block;
+    }
+    .entry-con input{
+        all: unset;
+        background-color: rgb(55, 37, 9);
+        color: white;
+        width: 80%;
+        font-size: 20px;
+        padding: 1vh 2vw;
+        border: none;
+        border-radius: 5px;
+        width: 20%;
+        text-align: center;
+    }
+    .entry-con textarea{
+        all: unset;
+        background-color: rgb(55, 37, 9);
+        color: white;
+        width: 80%;
+        font-size: 20px;
+        padding: 1vh 2vw;
+        border: none;
+        border-radius: 5px;
+    }
+
 }
 

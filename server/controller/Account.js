@@ -124,7 +124,7 @@ exports.deleteAccount = async(req,res)=>{
         const id = req.params.id;
        
 
-        const account = await Account.findByIdAndDelete(id);
+        await Account.findByIdAndDelete(id);
 
         const user = await User.findById(userId).populate("accounts");
 
@@ -205,5 +205,96 @@ exports.createEntry = async(req,res) =>{
 
 }
 
+exports.getEntry = async(req,res)=>{
+    try{
 
+        const id = req.params.id;
+
+        if(!id){
+            return res.status(402).json({
+                success:false,
+                message:"Id not found"
+            })
+        }
+
+        const entry = await Entry.findById(id);
+
+        return res.status(200).json({
+            success:true,
+            body:entry
+        })
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
+
+exports.editEntry = async(req,res)=>{
+    try{
+
+        const id = req.params.id;
+
+        const {amount , details , note} = req.body;
+
+        if(!amount && !details && !note){
+            return res.status(200).json({
+                success:true,
+                message:"Updated Successfully"
+            })
+        }
+
+        const prevEntry = await Entry.findById(id);
+
+        const entry = await Entry.findByIdAndUpdate(id,{
+            amount:amount,
+            details:details,
+            note:note,
+            updateAt:Date.now(),
+        },{new:true})
+
+        const account = await Account.findById(entry.accountId);
+        account.totalAmount = parseInt(account.totalAmount) - parseInt(prevEntry.amount) + parseInt(amount)
+        await account.save();
+
+        return res.status(200).json({
+            success:true,
+            message:"Updated",
+            body:entry
+        })
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
+
+exports.deleteEntry = async(req,res)=>{
+    try{
+
+        const id = req.params.id;
+
+        const entry = await Entry.findByIdAndDelete(id);
+        
+        const account = await Account.findById(entry.accountId);
+        account.totalAmount = account.totalAmount - entry.amount;
+        console.log(account);
+        await account.save();
+
+        return res.status(200).json({
+            success:true,
+            message:"Deleted Successfully"
+        })
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
 

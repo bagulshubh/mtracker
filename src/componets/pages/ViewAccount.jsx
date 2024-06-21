@@ -43,6 +43,10 @@ const ViewAccount = () => {
         navigate("/");
     }
 
+    const entryHandler = (id)=>{
+        navigate(`/entry/${id}`);
+    }
+
     return (
     <div className='account-wrapper'>
         
@@ -62,7 +66,7 @@ const ViewAccount = () => {
                             {
                                 account.entry.map((entry,key)=>{
                                     return <div className='entry-card'>
-                                        <div className='entry-card-main'>
+                                        <div className='entry-card-main' onClick={()=>{entryHandler(entry._id)}}>
                                             <div className={entry.amount < 0 ? 'red' : 'green'}>{entry.amount}</div>
                                             <div>{entry.createAt.substring(0,10)}</div>
                                         </div>

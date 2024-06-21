@@ -5,6 +5,7 @@ import Login from './componets/pages/Login';
 import CreateAccount from './componets/pages/CreateAccount';
 import ViewAccount from './componets/pages/ViewAccount';
 import CreateEntry from './componets/pages/CreateEntry';
+import ViewEntry from './componets/pages/ViewEntry';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/create' element={<CreateAccount></CreateAccount>}></Route>
         <Route path='/account/:id' element={<ViewAccount></ViewAccount>}></Route>
         <Route path='/createEntry/:id' element={<CreateEntry></CreateEntry>}></Route>
+        <Route path='/entry/:id' element={<ViewEntry></ViewEntry>}></Route>
 
       </Routes>
 

@@ -1,4 +1,4 @@
-const BASE_URL = /* "https://mtracker-0sct.onrender.com" */ "http://localhost:4000"  
+const BASE_URL = "https://mtracker-0sct.onrender.com" //"http://localhost:4000"  
 
 export const createAccount = async(data,token,setUser)=>{
     try{
@@ -95,6 +95,72 @@ export const deleteAccount = async(id,token) =>{
         else{
             console.log(output);
         }
+    } catch(err){
+        console.log(err);
+    }
+}
+
+export const getEntry = async(id)=>{
+    try{
+
+        const res = await fetch (`${BASE_URL}/account/entry/${id}`,
+            {
+                method:'GET',
+                headers: {
+                'Content-type': 'application/json',
+                },
+                mode:'cors',
+            }
+        )      
+        const output = await res.json();
+        console.log(output)
+        if(output.success === true) return output.body;
+        else console.log(output);
+        
+
+    } catch(err){
+        console.log(err);
+    }
+}
+
+export const editEntry = async (id,data) =>{
+    try{
+
+        const res = await fetch (`${BASE_URL}/account/entry/${id}`,
+            {
+                method:'PUT',
+                headers: {
+                'Content-type': 'application/json',
+                },
+                mode:'cors',
+                body:JSON.stringify(data)
+            }
+        )      
+        const output = await res.json();
+        if(output.success === true) return output.body;
+        else console.log(output);
+
+    } catch(err){
+        console.log(err);
+    }
+}
+
+export const deleteEntry = async(id) => {
+    try{
+
+        const res = await fetch (`${BASE_URL}/account/entry/${id}`,
+            {
+                method:'DELETE',
+                headers: {
+                'Content-type': 'application/json',
+                },
+                mode:'cors',
+            }
+        )      
+        const output = await res.json();
+        if(output.success === true) return true;
+        else console.log(output);
+
     } catch(err){
         console.log(err);
     }
