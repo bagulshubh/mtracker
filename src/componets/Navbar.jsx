@@ -2,6 +2,10 @@ import React, { useContext, useState } from 'react'
 import UserContext from '../context/user/UserContext'
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import { ImQrcode } from "react-icons/im";
+import { GiLion } from "react-icons/gi";
+
+
 
 
 const Navbar = (props) => {
@@ -33,8 +37,14 @@ const Navbar = (props) => {
 
   return (
     <div className='nav-wrapper'>
-        <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token)}}>MTracker</h1>
-
+        <div className='logo-con'>
+          <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token)}}>MTracker</h1>
+          <div className='logo-btn-con'>
+            <ImQrcode className='logo-btn'></ImQrcode>
+            <GiLion className='logo-btn'></GiLion>
+          </div>
+        </div>
+        
         <div className='input-div'>
             <input type='text' placeholder='Search' value={text} name='text' onChange={(event)=>{setText(event.target.value)}} onKeyDown={(event)=>{if(event.key=="Enter"){serachHandler()}}} ></input>
             <CiSearch className='search-icon' onClick={serachHandler}></CiSearch>

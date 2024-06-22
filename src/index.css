@@ -27,6 +27,8 @@
     align-items: center;
 }
 
+
+
 @media only screen and (max-width: 767px) {
 
   
@@ -111,6 +113,21 @@
         justify-content: space-between;
         align-items: center;
         
+    }
+    .logo-con{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo-btn-con{
+        display: flex;
+        justify-content: space-between;
+        gap: 7vw;
+    }
+    .logo-btn{
+        font-size: 9vw;
+        color: var(--primary-color);
     }
     .logo{
         color: var(--primary-color);
