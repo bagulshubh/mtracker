@@ -162,7 +162,7 @@ exports.createEntry = async(req,res) =>{
         const user = await User.findById(userId);
 
         if(!user){
-            return res.status(402).json({
+            return res.status(404).json({
                 success:false,
                 message:"User does not exists"
             })
@@ -171,7 +171,7 @@ exports.createEntry = async(req,res) =>{
         const account = await Account.findById(accountId);
         
         if(!account){
-            return res.status(402).json({
+            return res.status(404).json({
                 success:false,
                 messgage:"Account does not exists"
             })
@@ -298,3 +298,82 @@ exports.deleteEntry = async(req,res)=>{
     }
 }
 
+//utility for split
+const createEntryForSplit = async(body) =>{
+    try{
+        const userId = body.userId;
+        const {accountId , amount , details , note } = body.body;
+
+        if(!accountId || !amount){
+            return res.status(402).json({
+                success:false,
+                message:"All filds are required"
+            })
+        }
+
+        const user = await User.findById(userId);
+
+        if(!user){
+            console.log("User does not exists")
+            return 
+        }
+
+        const account = await Account.findById(accountId);
+        
+        if(!account){
+            console.log("ACcount does not exists")
+            return
+        }
+
+        const entry = new Entry({
+            userId,
+            accountId,
+            amount,
+            details,
+            note
+        })
+        await entry.save();
+
+        account.totalAmount = parseInt(account.totalAmount) + parseInt(amount);
+        account.entry.push(entry)
+        account.updateAt = Date.now();
+        await account.save();
+
+    } catch(err){
+        console.log(err);
+    }
+}
+
+exports.split = async(req,res) => {
+    try{
+
+        const {amount , details , accounts} = req.body;
+        const userId = req.userId;
+
+        for(let i = 0;i<accounts.length;i++){
+            const body = {
+                body : {
+                    amount : amount,
+                    details : details,
+                    accountId : accounts[i]
+                },
+                userId: userId
+            }
+            await createEntryForSplit(body);
+        }
+        //console.log(userId);
+        const user = await User.findById(userId).populate("accounts");
+
+        return res.status(200).json({
+            success:true,
+            body:user
+        })
+
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
