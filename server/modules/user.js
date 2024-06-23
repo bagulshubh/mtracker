@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Account"
     }],
+    scanner:{
+        type:String,
+        default:""
+    },
     createAt:{
         type:Date,
         default:Date.now()

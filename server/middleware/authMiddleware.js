@@ -4,9 +4,9 @@ require("dotenv").config();
 exports.auth = async (req,res,next)=>{
 
     try{
-        console.log("Flow til here")
+        //console.log("Flow til here")
         const token = req.cookies.token || req.headers.token;
-        console.log(token)
+        //console.log(token)
 
         if(!token){
             return res.status(401).json({

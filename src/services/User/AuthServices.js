@@ -1,4 +1,5 @@
-const BASE_URL =  "https://mtracker-0sct.onrender.com" //"http://localhost:4000"  
+
+const BASE_URL =  "https://mtracker-0sct.onrender.com" // "http://localhost:4000"  
 
 export const signUp = async (data)=>{
     try{
@@ -58,6 +59,33 @@ export const getUser = async(token)=>{
         //console.log("User details are :" , output.body);
         return output.body;
 
+    } catch(err){
+        console.log(err);
+    }
+}
+
+export const uploadScanner = async(token,formData)=>{
+    try{
+        //console.log(formData , "in service")
+        const res = await fetch (`${BASE_URL}/auth/scanner`,
+            {
+                method: 'POST',
+                headers: {
+                    'token': token,
+                },
+                mode: 'cors',
+                body: formData,
+            }
+        )
+
+        const output = await res.json();
+        //console.log(output);
+        if(output.success === true){
+            return output.body
+        }
+        else{
+            console.log(output);
+        }
     } catch(err){
         console.log(err);
     }

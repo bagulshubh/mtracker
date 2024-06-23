@@ -9,6 +9,7 @@ const UserState = (props) => {
 
   
   const token =  localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
+  console.log(token)
   let tempUser = "";
   useEffect(()=>{
     fetchData(token);

@@ -7,6 +7,7 @@ import ViewAccount from './componets/pages/ViewAccount';
 import CreateEntry from './componets/pages/CreateEntry';
 import ViewEntry from './componets/pages/ViewEntry';
 import Split from './componets/pages/Split';
+import Scanner from './componets/pages/Scanner';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/createEntry/:id' element={<CreateEntry></CreateEntry>}></Route>
         <Route path='/entry/:id' element={<ViewEntry></ViewEntry>}></Route>
         <Route path='/split' element={<Split></Split>}></Route>
+        <Route path="/scanner" element={<Scanner></Scanner>}></Route>
 
       </Routes>
 
