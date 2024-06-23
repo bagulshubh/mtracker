@@ -454,6 +454,28 @@
         z-index: 100;
     }
     
+    /* #region scanner */
+    .scanner-wrapper{
+        width: 100%;
+        padding: 1vh 2vw;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+    }
+    .scanner-con{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+    }
+    .scanner-img{
+        width: 100%;
+    }
+    .scanner-input{
+        width: 100%;
+        font-size: 5vw;
+    }
+
 
 }
 
