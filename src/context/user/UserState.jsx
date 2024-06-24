@@ -12,14 +12,14 @@ const UserState = (props) => {
   console.log(token)
   let tempUser = "";
   useEffect(()=>{
-    fetchData(token);
+    fetchData(token,"true");
   },[token]);
 
 
-  async function  fetchData (token){
+  async function  fetchData (token,skip){
     setLoading(true);
     if(token!==""){
-      tempUser= await getUser(token);
+      tempUser= await getUser(token,skip);
       setUser(tempUser);
       console.log(tempUser);
     }

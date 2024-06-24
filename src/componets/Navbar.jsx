@@ -38,7 +38,7 @@ const Navbar = (props) => {
   return (
     <div className='nav-wrapper'>
         <div className='logo-con'>
-          <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token)}}>MTracker</h1>
+          <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token,"false")}}>MTracker</h1>
           <div className='logo-btn-con'>
             <ImQrcode className='logo-btn' onClick={()=>{navigate("/scanner")}}></ImQrcode>
             <GiLion className='logo-btn'></GiLion>

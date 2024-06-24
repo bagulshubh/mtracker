@@ -32,7 +32,7 @@ const CreateEntry = () => {
     const submitHandler = async()=>{
         setLoading(true)
         await createEntry(data,token);
-        const user = await getUser(token);
+        const user = await getUser(token,"true");
         //console.log(user)
         context.setUser(user);
         setLoading(false);
