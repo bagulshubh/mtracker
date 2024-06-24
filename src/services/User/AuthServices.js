@@ -42,10 +42,10 @@ export const login  = async(data) =>{
     }
 }
 
-export const getUser = async(token)=>{
+export const getUser = async(token,skip)=>{
     try{
 
-        const res = await fetch (`${BASE_URL}/auth/`,
+        const res = await fetch (`${BASE_URL}/auth/${skip}`,
             {
                 method:'GET',
                 headers: {
@@ -56,7 +56,7 @@ export const getUser = async(token)=>{
             }
         )       
         const output = await res.json();
-        //console.log("User details are :" , output.body);
+        console.log("User details are :" , output);
         return output.body;
 
     } catch(err){
