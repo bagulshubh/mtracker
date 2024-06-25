@@ -57,6 +57,7 @@ exports.uploadScanner = async(req,res) =>{
         
         user.scanner = image.secure_url;
         await user.save();
+        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,

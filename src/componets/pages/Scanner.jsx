@@ -9,6 +9,7 @@ const Scanner = () => {
     const user = context.user;
     const setUser = context.setUser;
     const token = context.token;
+    const setSkipp = context.setSkipp;
     const [loading , setLoading ] = useState(false);
 
     const onChangeFile = async (event)=>{
@@ -22,6 +23,7 @@ const Scanner = () => {
         setLoading(true)
         const tempUser = await uploadScanner(token,formData);
         setUser(tempUser);
+        setSkipp("true");
         setLoading(false);
     }
 

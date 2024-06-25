@@ -11,6 +11,7 @@ const ViewAccount = () => {
     const [account , setAccount ] = useState("");
     const token =  context.token;
     const setUser = context.setUser;
+    const setSkipp = context.setSkipp;
     const [loading , setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const ViewAccount = () => {
         console.log(user);
         setUser(user);
         setLoading(false);
+        setSkipp("true");
         navigate("/");
     }
 

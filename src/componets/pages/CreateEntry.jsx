@@ -11,6 +11,7 @@ const CreateEntry = () => {
     const id = params.id;
     const [loading, setLoading] = useState(false);
     const token = context.token;
+    const setSkipp = context.setSkipp;
     const navigate = useNavigate();
 
     const [data,setData] = useState({
@@ -35,6 +36,7 @@ const CreateEntry = () => {
         const user = await getUser(token,"true");
         //console.log(user)
         context.setUser(user);
+        setSkipp("true");
         setLoading(false);
         navigate(`/account/${id}`);
     }
