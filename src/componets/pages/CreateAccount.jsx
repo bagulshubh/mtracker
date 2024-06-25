@@ -8,6 +8,7 @@ const CreateAccount = () => {
   
     const context = useContext(UserContext);
     const setUser = context.setUser;
+    const setSkipp = context.setSkipp;
     const [loading,setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -33,6 +34,7 @@ const CreateAccount = () => {
         //api call to create account
         setLoading(true);
         await createAccount(data,token,setUser);
+        setSkipp("true");
         setLoading(false);
         navigate("/");
     }

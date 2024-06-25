@@ -1,6 +1,10 @@
 const Account = require("../modules/account");
 const User = require("../modules/user");
 const Entry = require("../modules/entry");
+const redisClient = require("../config/redisClient");
+const {promisify} = require("util");
+
+const redisSetAsync = promisify(redisClient.set).bind(redisClient);
 
 
 //#region Account
@@ -59,6 +63,7 @@ exports.createAccount = async(req,res)=>{
         user.accounts.push(account);
         await user.save();
         await user.populate("accounts");
+        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(201).json({
             success:true,
@@ -127,6 +132,7 @@ exports.deleteAccount = async(req,res)=>{
         await Account.findByIdAndDelete(id);
 
         const user = await User.findById(userId).populate("accounts");
+        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,
@@ -276,18 +282,23 @@ exports.editEntry = async(req,res)=>{
 exports.deleteEntry = async(req,res)=>{
     try{
 
+        const userId = req.userId;
+
         const id = req.params.id;
 
         const entry = await Entry.findByIdAndDelete(id);
         
         const account = await Account.findById(entry.accountId);
         account.totalAmount = account.totalAmount - entry.amount;
-        console.log(account);
+        //console.log(account);
         await account.save();
+
+        const user = await User.findById(userId).populate("accounts");
 
         return res.status(200).json({
             success:true,
-            message:"Deleted Successfully"
+            message:"Deleted Successfully",
+            body:user
         })
 
     } catch(err){
@@ -363,6 +374,7 @@ exports.split = async(req,res) => {
         }
         //console.log(userId);
         const user = await User.findById(userId).populate("accounts");
+        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,

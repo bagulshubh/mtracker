@@ -6,7 +6,7 @@ import { getUser } from "../../services/User/AuthServices";
 const UserState = (props) => {
   const [loading,setLoading] = useState(true);
   const [user, setUser] = useState("");
-
+  const [skipp,setSkipp] = useState(false);
   
   const token =  localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
   console.log(token)
@@ -23,12 +23,15 @@ const UserState = (props) => {
       setUser(tempUser);
       console.log(tempUser);
     }
+    if(skip === "true"){
+      setSkipp("false");
+    }
     setLoading(false);
   }
 
 
   return (
-    <UserContext.Provider value={{ user , setUser , loading , token , fetchData,setLoading}}>
+    <UserContext.Provider value={{ user , setUser , loading , token , fetchData,setLoading , setSkipp , skipp}}>
       {props.children}
     </UserContext.Provider>
   );

@@ -14,6 +14,7 @@ const Split = () => {
     const context = useContext(UserContext);
     const token = context.token;
     const setUser2 = context.setUser;
+    const setSkipp = context.setSkipp;
     const [user,setUser] = useState(context.user);
     const [loading , setLoading ] = useState(false);
     const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Split = () => {
         const newUser = await split(data,token);
         //console.log(newUser);
         setUser2(newUser);
+        setSkipp("true");
         setLoading(false);
         navigate("/");
     }

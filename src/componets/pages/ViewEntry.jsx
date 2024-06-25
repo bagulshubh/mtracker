@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getEntry , editEntry , deleteEntry } from '../../services/Account/AccountServices';
 import Navbar from '../Navbar';
+import UserContext from '../../context/user/UserContext';
 
 const ViewEntry = () => {
 
     const params = useParams();
     const id = params.id;
     const navigate = useNavigate();
+    const context = useContext(UserContext);
+    const token = context.token;
 
     const [entry,setEntry] = useState('');
     const [copy,setCopy] = useState('');
     const [editFlag , setEditFlag] = useState(false);
     const [loading,setLoading] = useState(false);
+    const setSkipp = context.setSkipp;
+    const setUser = context.setUser;
 
 
     useEffect(()=>{
@@ -42,13 +47,16 @@ const ViewEntry = () => {
         console.log(newEntry);
         setEntry(newEntry);
         setEditFlag(false);
+        setSkipp("true");
         setLoading(false);
     }
 
     const deleteHandler = async() => {
         setLoading(true)
-        const res = await deleteEntry(id);
+        const res = await deleteEntry(token,id);
         if(res){
+            setUser(res);
+            setSkipp("true");
             navigate("/");
         } else{
             console.log("Failed to delete");

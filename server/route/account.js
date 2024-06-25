@@ -11,7 +11,7 @@ router.get("/:id",auth,getAccountById);
 router.get("/",auth,getAllAccounts);
 router.delete("/:id",auth,deleteAccount);
 router.put("/entry/:id",editEntry);
-router.delete("/entry/:id",deleteEntry);
+router.delete("/entry/:id",auth,deleteEntry);
 router.post("/split",auth,split);
 
 module.exports = router;
