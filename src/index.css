@@ -123,10 +123,10 @@
     .logo-btn-con{
         display: flex;
         justify-content: space-between;
-        gap: 7vw;
+        gap: 6vw;
     }
     .logo-btn{
-        font-size: 9vw;
+        font-size: 8vw;
         color: var(--primary-color);
     }
     .logo{

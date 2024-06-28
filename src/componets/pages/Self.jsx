@@ -32,10 +32,13 @@ const Self = () => {
 
   return (
     <div className='account-wrapper'>
-      {
-        loading ? <div className='loader'></div> : <div>
+      
           <Navbar></Navbar>
-          <div className='account-con'>
+
+          {
+            loading ? <div className='loader'></div> :
+
+            <div className='account-con'>
             <div> Amount: {self.amount} </div>
             <div className='homepage-btn-con'>
               <div className='homepage-btn' onClick={()=>{navigate(`/createSelf/${self._id}`)}}>Create</div>
@@ -60,9 +63,10 @@ const Self = () => {
             </div>
 
           </div>
-        </div>
-      }
 
+
+          }
+          
     </div>
   )
 }
