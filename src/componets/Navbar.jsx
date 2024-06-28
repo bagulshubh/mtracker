@@ -4,8 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import { ImQrcode } from "react-icons/im";
 import { GiLion } from "react-icons/gi";
-
-
+import { GrPower } from "react-icons/gr";
 
 
 const Navbar = (props) => {
@@ -36,11 +35,17 @@ const Navbar = (props) => {
       //console.log(text);
     }
 
+    const logoutHandler = ()=>{
+      localStorage.removeItem("token");
+      location.reload("/")
+    }
+
   return (
     <div className='nav-wrapper'>
         <div className='logo-con'>
           <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token,skipp)}}>MTracker</h1>
           <div className='logo-btn-con'>
+            <GrPower className='logo-btn' onClick={logoutHandler}></GrPower>
             <ImQrcode className='logo-btn' onClick={()=>{navigate("/scanner")}}></ImQrcode>
             <GiLion className='logo-btn' onClick={()=>{navigate("/self")}}></GiLion>
           </div>
