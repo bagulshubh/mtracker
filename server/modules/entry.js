@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { BiCategory } = require("react-icons/bi");
 
 const entrySchema = new mongoose.Schema({
 
