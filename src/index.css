@@ -476,6 +476,15 @@
         font-size: 5vw;
     }
 
+    /* Self  */
+    .category-select{
+        height: 40px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        margin-bottom: 15px;
+    }
 
 }
 

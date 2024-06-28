@@ -3,6 +3,7 @@ const User = require("../modules/user");
 const Entry = require("../modules/entry");
 const redisClient = require("../config/redisClient");
 const {promisify} = require("util");
+const Self = require("../modules/self");
 
 const redisSetAsync = promisify(redisClient.set).bind(redisClient);
 
@@ -261,8 +262,14 @@ exports.editEntry = async(req,res)=>{
             updateAt:Date.now(),
         },{new:true})
 
-        const account = await Account.findById(entry.accountId);
-        account.totalAmount = parseInt(account.totalAmount) - parseInt(prevEntry.amount) + parseInt(amount)
+        let account = await Account.findById(entry.accountId);
+        if(!account){
+            account = await Self.findById(entry.accountId);
+            account.amount = parseInt(account.amount) - parseInt(prevEntry.amount) + parseInt(amount)
+        } 
+        else{
+            account.totalAmount = parseInt(account.totalAmount) - parseInt(prevEntry.amount) + parseInt(amount)
+        }
         await account.save();
 
         return res.status(200).json({
@@ -287,11 +294,18 @@ exports.deleteEntry = async(req,res)=>{
         const id = req.params.id;
 
         const entry = await Entry.findByIdAndDelete(id);
-        
-        const account = await Account.findById(entry.accountId);
-        account.totalAmount = account.totalAmount - entry.amount;
-        //console.log(account);
-        await account.save();
+
+        let account = await Account.findById(entry.accountId);
+        if(!account){
+            account = await Self.findById(entry.accountId);
+            account.amount = parseInt(account.amount) - parseInt(entry.amount)
+            account.save();
+        }
+        else{
+            account.totalAmount = parseInt(account.totalAmount) - parseInt(entry.amount);
+            //console.log(account);
+            await account.save();
+        }
 
         const user = await User.findById(userId).populate("accounts");
 

@@ -9,6 +9,7 @@ const fileUpload = require("express-fileupload")
 const {cloudinaryConnect} = require("./config/cloudinary");
 const authRouter = require("./route/auth");
 const accountRouter = require("./route/account");
+const selfRouter = require("./route/self");
 
 database.connect();
 
@@ -33,6 +34,7 @@ cloudinaryConnect();
 
 app.use("/auth",authRouter);
 app.use("/account",accountRouter);
+app.use("/self",selfRouter);
 
 app.get("/",()=>{
     return `<h1>Working..</h1>`
