@@ -8,6 +8,8 @@ import CreateEntry from './componets/pages/CreateEntry';
 import ViewEntry from './componets/pages/ViewEntry';
 import Split from './componets/pages/Split';
 import Scanner from './componets/pages/Scanner';
+import Self from './componets/pages/Self';
+import CreateSelf from './componets/pages/CreateSelf';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
         <Route path='/entry/:id' element={<ViewEntry></ViewEntry>}></Route>
         <Route path='/split' element={<Split></Split>}></Route>
         <Route path="/scanner" element={<Scanner></Scanner>}></Route>
+        <Route path='/self' element={<Self></Self>}></Route>
+        <Route path='/createSelf/:id' element={<CreateSelf></CreateSelf>}></Route>
 
       </Routes>
 

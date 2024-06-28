@@ -1,6 +1,7 @@
 const User = require("../modules/user.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Self = require("../modules/self.js");
 
 
 exports.signup = async(req,res)=>{
@@ -25,11 +26,19 @@ exports.signup = async(req,res)=>{
 
         const hashedPassword = await bcrypt.hash(password,10);
         console.log("got here")
+
+        const self = await Self.create({
+            amount: 0,
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+        })
+
          
         const savedUser = await User.create({
             name:name,
             email:email,
-            password:hashedPassword
+            password:hashedPassword,
+            selfId:self._id
         })
 
         console.log(savedUser)

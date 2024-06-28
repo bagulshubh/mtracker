@@ -42,7 +42,7 @@ const Navbar = (props) => {
           <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token,skipp)}}>MTracker</h1>
           <div className='logo-btn-con'>
             <ImQrcode className='logo-btn' onClick={()=>{navigate("/scanner")}}></ImQrcode>
-            <GiLion className='logo-btn'></GiLion>
+            <GiLion className='logo-btn' onClick={()=>{navigate("/self")}}></GiLion>
           </div>
         </div>
         

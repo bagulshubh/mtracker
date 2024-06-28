@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:""
     },
+    selfId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Self"
+    },
     createAt:{
         type:Date,
         default:Date.now()
