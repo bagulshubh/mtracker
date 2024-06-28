@@ -7,7 +7,7 @@ const UserState = (props) => {
   const [loading,setLoading] = useState(true);
   const [user, setUser] = useState("");
   const [skipp,setSkipp] = useState(false);
-  
+  localStorage.removeItem("token");
   const token =  localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "";
   console.log(token)
   let tempUser = "";
