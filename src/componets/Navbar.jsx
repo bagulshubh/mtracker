@@ -41,19 +41,23 @@ const Navbar = (props) => {
     }
 
     const handleOpenPhonePe = () => {
-      
       const appUrl = 'phonepe://';
       const fallbackUrl = 'https://play.google.com/store/apps/details?id=com.phonepe.app';
-  
+    
+      // Create an invisible iframe
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    
       // Attempt to open the app using the deep link
-      window.location.href = appUrl;
-  
+      iframe.src = appUrl;
+    
       // Fallback to Play Store if the app is not installed
       setTimeout(() => {
         window.location.href = fallbackUrl;
-      }, 4000); 
+      }, 4000); // 2 seconds should be enough to detect if the app is installed
     };
-
+    
   return (
     <div className='nav-wrapper'>
         <div className='logo-con'>
