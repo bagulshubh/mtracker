@@ -51,7 +51,7 @@ const Navbar = (props) => {
       // Fallback to Play Store if the app is not installed
       setTimeout(() => {
         window.location.href = fallbackUrl;
-      }, 1000); 
+      }, 4000); 
     };
 
   return (
