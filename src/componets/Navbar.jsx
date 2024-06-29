@@ -40,13 +40,27 @@ const Navbar = (props) => {
       location.reload("/")
     }
 
+    const handleOpenPhonePe = () => {
+      
+      const appUrl = 'phonepe://';
+      const fallbackUrl = 'https://play.google.com/store/apps/details?id=com.phonepe.app';
+  
+      // Attempt to open the app using the deep link
+      window.location.href = appUrl;
+  
+      // Fallback to Play Store if the app is not installed
+      setTimeout(() => {
+        window.location.href = fallbackUrl;
+      }, 1000); // Adjust the timeout as needed
+    };
+
   return (
     <div className='nav-wrapper'>
         <div className='logo-con'>
           <h1 className='logo' onClick={()=>{setText("");navigate("/");fetchData(token,skipp)}}>MTracker</h1>
           <div className='logo-btn-con'>
             <GrPower className='logo-btn' onClick={logoutHandler}></GrPower>
-            <ImQrcode className='logo-btn' onClick={()=>{navigate("/scanner")}}></ImQrcode>
+            <ImQrcode className='logo-btn' onClick={()=>{navigate("/scanner")}}  onDoubleClick={handleOpenPhonePe}></ImQrcode>
             <GiLion className='logo-btn' onClick={()=>{navigate("/self")}}></GiLion>
           </div>
         </div>
