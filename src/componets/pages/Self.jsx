@@ -19,10 +19,16 @@ const Self = () => {
         setLoading(true);
         const response = await getSelf(token);
         setSelf(response);
+        response.amount = new Intl.NumberFormat('en-IN', {
+          style: 'currency',
+          currency: 'INR'
+        }).format(response.amount);
         setLoading(false);
         //console.log(response)
       }
       fetchData();
+      
+    
     },[user])  
 
     const entryHandler = (id)=>{
@@ -39,9 +45,10 @@ const Self = () => {
             loading ? <div className='loader'></div> :
 
             <div className='account-con'>
-            <div> Amount: {self.amount} </div>
+            <div className='balance'> Balance: {self.amount} </div>
             <div className='homepage-btn-con'>
               <div className='homepage-btn' onClick={()=>{navigate(`/createSelf/${self._id}`)}}>Create</div>
+              <div className='homepage-btn' onClick={()=>{navigate(`/roundup/${self._id}`)}}>RoundUp</div>
               <div className='homepage-btn'>Analysis</div>
             </div>
 

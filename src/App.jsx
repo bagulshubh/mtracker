@@ -10,6 +10,7 @@ import Split from './componets/pages/Split';
 import Scanner from './componets/pages/Scanner';
 import Self from './componets/pages/Self';
 import CreateSelf from './componets/pages/CreateSelf';
+import RoundUp from './componets/pages/RoundUp';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/scanner" element={<Scanner></Scanner>}></Route>
         <Route path='/self' element={<Self></Self>}></Route>
         <Route path='/createSelf/:id' element={<CreateSelf></CreateSelf>}></Route>
+        <Route path='/roundup/:id' element={<RoundUp></RoundUp>}></Route>
 
       </Routes>
 

@@ -63,6 +63,7 @@ const CreateSelf = () => {
                         <option value="Travel">Travel</option>
                         <option value="Rent">Rent</option>
                         <option value="Stationary">Stationary</option>
+                        <option value="Courses">Courses</option>
                         <option value="Laundry">Laundry</option>
                         <option value="Entertainment">Entertainment</option>
                         <option value="Medical">Medical</option>
