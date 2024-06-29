@@ -18,6 +18,7 @@ const Self = () => {
       const fetchData = async()=>{
         setLoading(true);
         const response = await getSelf(token);
+        response.entry.reverse();
         setSelf(response);
         response.amount = new Intl.NumberFormat('en-IN', {
           style: 'currency',

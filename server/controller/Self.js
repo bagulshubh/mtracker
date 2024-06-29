@@ -120,3 +120,37 @@ exports.deleteEntry = async(req,res) =>{
         })
     }
 }
+
+exports.roundUp = async(req,res)=>{
+    try{
+        const userId = req.userId;
+        const id = req.params.id;
+        const amount = req.body.amount;
+
+        const self = await Self.findById(id);
+        const diff = parseInt(amount) - parseInt(self.amount);
+
+        const entry = await Entry.create({
+            userId,
+            amount:diff,
+            accountId:self._id,
+            category:"Other"
+        })
+
+        self.amount = amount;
+        self.entry.push(entry._id)
+        self.save();
+
+        return res.status(200).json({
+            success:true,
+            message:"Roundup successfull",
+            body:self
+        })
+
+    } catch(err){
+        return res.status(500).json({
+            success:false,
+            message:err.message
+        })
+    }
+}
