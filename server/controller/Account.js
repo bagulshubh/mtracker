@@ -1,11 +1,9 @@
 const Account = require("../modules/account");
 const User = require("../modules/user");
 const Entry = require("../modules/entry");
-const redisClient = require("../config/redisClient");
 const {promisify} = require("util");
 const Self = require("../modules/self");
 
-const redisSetAsync = promisify(redisClient.set).bind(redisClient);
 
 
 //#region Account
@@ -64,7 +62,6 @@ exports.createAccount = async(req,res)=>{
         user.accounts.push(account);
         await user.save();
         await user.populate("accounts");
-        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(201).json({
             success:true,
@@ -133,7 +130,6 @@ exports.deleteAccount = async(req,res)=>{
         await Account.findByIdAndDelete(id);
 
         const user = await User.findById(userId).populate("accounts");
-        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,
@@ -388,7 +384,6 @@ exports.split = async(req,res) => {
         }
         //console.log(userId);
         const user = await User.findById(userId).populate("accounts");
-        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,

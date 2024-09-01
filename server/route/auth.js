@@ -8,7 +8,7 @@ const { userCache } = require("../middleware/redisMiddleware");
 
 router.post("/signup",signup);
 router.post("/login",login);
-router.get("/:skip",auth,userCache,getUser);
+router.get("/:skip",auth,getUser);
 router.post("/scanner",auth,uploadScanner);
 
 module.exports = router;
