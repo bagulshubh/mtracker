@@ -1,10 +1,8 @@
 const User = require("../modules/user");
 const {uploadImageToCloudinary} = require("../Utils/imageUploader")
-const redisClient = require("../config/redisClient");
 const {promisify} = require("util");
 
 
-const redisSetAsync = promisify(redisClient.set).bind(redisClient);
 
 
 exports.getUser = async(req,res) =>{
@@ -14,7 +12,6 @@ exports.getUser = async(req,res) =>{
         const userId = req.userId;
         const user = await User.findById(userId).populate("accounts");
 
-        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,
@@ -57,7 +54,6 @@ exports.uploadScanner = async(req,res) =>{
         
         user.scanner = image.secure_url;
         await user.save();
-        await redisSetAsync("user",JSON.stringify(user));
 
         return res.status(200).json({
             success:true,

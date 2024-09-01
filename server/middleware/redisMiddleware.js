@@ -1,8 +1,6 @@
-const redisClient = require("../config/redisClient");
 const {promisify} = require("util");
 
 
-const redisGetAsync = promisify(redisClient.get).bind(redisClient);
 
 
 exports.userCache = async(req,res,next)=>{
@@ -16,7 +14,6 @@ exports.userCache = async(req,res,next)=>{
             return;
         }
 
-        let user = await redisGetAsync("user");
         user = JSON.parse(user);
         //console.log(user);
         if(user){

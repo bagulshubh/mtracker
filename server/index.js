@@ -35,6 +35,13 @@ cloudinaryConnect();
 app.use("/auth",authRouter);
 app.use("/account",accountRouter);
 app.use("/self",selfRouter);
+app.use("/hailing",(req,res)=>{
+    //console.log("hailing route");
+    return res.status(200).json({
+        success:true,
+        message:"hailing route",
+    })
+})
 
 app.get("/",()=>{
     return `<h1>Working..</h1>`
@@ -43,3 +50,25 @@ app.get("/",()=>{
 app.listen(PORT,()=>{
     console.log(`Server is running at ${PORT}`)
 })
+
+const axios = require('axios');
+
+function callSelfApi() {
+    axios.get('http://localhost:4000/hailing')
+        .then(response => {
+            console.log('API Response:', response.data);
+        })
+        .catch(error => {
+            console.error('Error calling API:', error.message);
+        });
+}
+
+
+function scheduleApiCall() {
+    callSelfApi(); 
+    setInterval(callSelfApi, 14 * 60 * 1000);
+}
+
+
+scheduleApiCall();
+
