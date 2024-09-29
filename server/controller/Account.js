@@ -370,11 +370,12 @@ exports.split = async(req,res) => {
 
         const {amount , details , accounts} = req.body;
         const userId = req.userId;
+        const length = accounts.length;
 
         for(let i = 0;i<accounts.length;i++){
             const body = {
                 body : {
-                    amount : amount,
+                    amount : amount/length,
                     details : details,
                     accountId : accounts[i]
                 },
