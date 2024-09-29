@@ -50,7 +50,8 @@ exports.createAccount = async(req,res)=>{
             accountId,
             amount:totalAmount,
             details,
-            note
+            note,
+            createAt:Date.now()
         })
 
         account.totalAmount = totalAmount;
@@ -185,7 +186,8 @@ exports.createEntry = async(req,res) =>{
             accountId,
             amount,
             details,
-            note
+            note,
+            createAt:Date.now()
         })
         await entry.save();
 
