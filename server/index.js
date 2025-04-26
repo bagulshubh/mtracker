@@ -54,7 +54,7 @@ app.listen(PORT, '0.0.0.0', () => {
 const axios = require('axios');
 
 function callSelfApi() {
-    axios.get('https://mtracker-0sct.onrender.com/hailing')
+    axios.get("https://mtracker-g4mv.onrender.com/hailing")
         .then(response => {
             console.log('API Response:', response.data);
         })
